@@ -1,0 +1,20 @@
+.table-badge {
+    background-color: gray;
+    color: white;
+    font-weight: 600;
+    padding: 0px 5px;
+    border-radius: 6px;
+}
+
+.detail {
+    text-align: center;
+}
+
+.text-summary {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.text-details {
+    flex-basis: 30%;
+}
