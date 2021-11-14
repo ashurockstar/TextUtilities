@@ -100,8 +100,11 @@ export default function TextForm(props) {
             <div className="mb-3">
                 <h1 className="my-3">{props.heading}</h1>
                 <label htmlFor="myBox" className="form-label">Example textarea</label>
-                <textarea className="form-control mb-3" value={text} id="myBox" rows="8" 
+                <textarea className="form-control mb-3" style={{backgroundColor: `${props.mode === "dark" ? "grey" : "white"}`, color: `${props.mode === "dark" ? "white" : "grey"}`}} value={text} id="myBox" rows="8" 
                     onChange={handleChangeEvent} placeholder="Enter value to convert"></textarea>
+
+            </div>
+            <div className="d-flex">
                 <button className="btn btn-success mx-1" onClick={handleUpperClickEvent}>Convert To UpperCase</button>
                 <button className="btn btn-success mx-1" onClick={handleLowerClickEvent}>Convert To LowerCase</button>
                 <button className="btn btn-success mx-1" onClick={handleCopy}>Copy To Clipboard</button>
@@ -163,27 +166,27 @@ export default function TextForm(props) {
                     <table className="table table-bordered">
                         <tbody>
                             <tr>
-                            <td>Words</td>
+                            <td style={{color: `${props.mode === "dark" ? "white" : "black"}`}}>Words</td>
                             <td className="detail"><span className="table-badge">{wordCount().length}</span></td>
                             </tr>
                             <tr>
-                            <td>Characters</td>
+                            <td style={{color: `${props.mode === "dark" ? "white" : "black"}`}}>Characters</td>
                             <td className="detail"><span className="table-badge">{text.length}</span></td>
                             </tr>
                             <tr>
-                            <td>Sentences</td>
+                            <td style={{color: `${props.mode === "dark" ? "white" : "black"}`}}>Sentences</td>
                             <td className="detail"><span className="table-badge">{sentenceCount().length}</span></td>
                             </tr>
                             <tr>
-                            <td>Paragraphs</td>
+                            <td style={{color: `${props.mode === "dark" ? "white" : "black"}`}}>Paragraphs</td>
                             <td className="detail"><span className="table-badge">{paragraphCount().length}</span></td>
                             </tr>
                             <tr>
-                            <td>Reading Time</td>
+                            <td style={{color: `${props.mode === "dark" ? "white" : "black"}`}}>Reading Time</td>
                             <td className="detail"><span className="table-badge">{minutesRead()} minutes</span></td>
                             </tr>
                             <tr>
-                            <td>Speaking Time</td>
+                            <td style={{color: `${props.mode === "dark" ? "white" : "black"}`}}>Speaking Time</td>
                             <td className="detail"><span className="table-badge">{speakingTime()} minutes</span></td>
                             </tr>
                         </tbody>
