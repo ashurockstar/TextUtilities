@@ -83,6 +83,18 @@ export default function TextForm(props) {
         setGoal(goalValue.current.value);
         goalValue.current.value = 0;
     }
+
+    const handleCopy = () => {
+        const text = document.getElementById("myBox");
+        // text.select();
+        navigator.clipboard.writeText(text.value);
+        // goalValue.current.value = 0;
+    }
+    const handleExtraSpace = () => {
+        const newText = text.split(/[ ]+/);
+        setText(newText.join(" "));
+        // goalValue.current.value = 0;
+    }
     return (
         <>
             <div className="mb-3">
@@ -92,7 +104,8 @@ export default function TextForm(props) {
                     onChange={handleChangeEvent} placeholder="Enter value to convert"></textarea>
                 <button className="btn btn-success mx-1" onClick={handleUpperClickEvent}>Convert To UpperCase</button>
                 <button className="btn btn-success mx-1" onClick={handleLowerClickEvent}>Convert To LowerCase</button>
-                <button className="btn btn-success mx-1" onClick={handleGoal}>Select Writing Goal</button>
+                <button className="btn btn-success mx-1" onClick={handleCopy}>Copy To Clipboard</button>
+                <button className="btn btn-success mx-1" onClick={handleExtraSpace}>Remove Extra Space</button>
             </div>
             <div className="d-flex my-3 justify-content-between">
                 <div className="text-summary">
@@ -108,7 +121,7 @@ export default function TextForm(props) {
                         </button>
                     </p>
                     <div className="mb-3">
-                        <label for="wordGoal" className="form-label">Enter word goal (only numbers)</label>
+                        <label htmlFor="wordGoal" className="form-label">Enter word goal (only numbers)</label>
                         <button 
                             className="btn btn-warning mx-3 my-3"
                             onClick={handleGoal}>
