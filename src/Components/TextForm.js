@@ -16,12 +16,14 @@ export default function TextForm(props) {
         // console.log("Inside OnClick");
         const newText = text.toUpperCase();
         setText(newText);
+        props.showAlert("Text Converted to Upper Case", "success");
     }
 
     const handleLowerClickEvent = () => {
         // console.log("Inside OnClick");
         const newText = text.toLowerCase();
         setText(newText);
+        props.showAlert("Text Converted to Lower Case", "success");
     }
 
     const wordCount = () => {
@@ -88,11 +90,14 @@ export default function TextForm(props) {
         const text = document.getElementById("myBox");
         // text.select();
         navigator.clipboard.writeText(text.value);
+        props.showAlert("Message is copied", "success");
+
         // goalValue.current.value = 0;
     }
     const handleExtraSpace = () => {
         const newText = text.split(/[ ]+/);
         setText(newText.join(" "));
+        props.showAlert("Extra Spaces removed", "success");
         // goalValue.current.value = 0;
     }
     return (
@@ -100,15 +105,15 @@ export default function TextForm(props) {
             <div className="mb-3">
                 <h1 className="my-3">{props.heading}</h1>
                 <label htmlFor="myBox" className="form-label">Example textarea</label>
-                <textarea className="form-control mb-3" style={{backgroundColor: `${props.mode === "dark" ? "grey" : "white"}`, color: `${props.mode === "dark" ? "white" : "grey"}`}} value={text} id="myBox" rows="8" 
+                <textarea className="form-control mb-3" style={{backgroundColor: `${props.mode !== "light" ? "grey" : "white"}`, color: `${props.mode !== "light" ? "white" : "grey"}`}} value={text} id="myBox" rows="8" 
                     onChange={handleChangeEvent} placeholder="Enter value to convert"></textarea>
 
             </div>
             <div className="d-flex">
-                <button className="btn btn-success mx-1" onClick={handleUpperClickEvent}>Convert To UpperCase</button>
-                <button className="btn btn-success mx-1" onClick={handleLowerClickEvent}>Convert To LowerCase</button>
-                <button className="btn btn-success mx-1" onClick={handleCopy}>Copy To Clipboard</button>
-                <button className="btn btn-success mx-1" onClick={handleExtraSpace}>Remove Extra Space</button>
+                <button className={`btn btn-${props.mode} mx-1`} onClick={handleUpperClickEvent}>Convert To UpperCase</button>
+                <button className={`btn btn-${props.mode} mx-1`} onClick={handleLowerClickEvent}>Convert To LowerCase</button>
+                <button className={`btn btn-${props.mode} mx-1`} onClick={handleCopy}>Copy To Clipboard</button>
+                <button className={`btn btn-${props.mode} mx-1`} onClick={handleExtraSpace}>Remove Extra Space</button>
             </div>
             <div className="d-flex my-3 justify-content-between">
                 <div className="text-summary">
@@ -166,27 +171,27 @@ export default function TextForm(props) {
                     <table className="table table-bordered">
                         <tbody>
                             <tr>
-                            <td style={{color: `${props.mode === "dark" ? "white" : "black"}`}}>Words</td>
+                            <td style={{color: `${props.mode !== "light" ? "white" : "black"}`}}>Words</td>
                             <td className="detail"><span className="table-badge">{wordCount().length}</span></td>
                             </tr>
                             <tr>
-                            <td style={{color: `${props.mode === "dark" ? "white" : "black"}`}}>Characters</td>
+                            <td style={{color: `${props.mode !== "light" ? "white" : "black"}`}}>Characters</td>
                             <td className="detail"><span className="table-badge">{text.length}</span></td>
                             </tr>
                             <tr>
-                            <td style={{color: `${props.mode === "dark" ? "white" : "black"}`}}>Sentences</td>
+                            <td style={{color: `${props.mode !== "light" ? "white" : "black"}`}}>Sentences</td>
                             <td className="detail"><span className="table-badge">{sentenceCount().length}</span></td>
                             </tr>
                             <tr>
-                            <td style={{color: `${props.mode === "dark" ? "white" : "black"}`}}>Paragraphs</td>
+                            <td style={{color: `${props.mode !== "light" ? "white" : "black"}`}}>Paragraphs</td>
                             <td className="detail"><span className="table-badge">{paragraphCount().length}</span></td>
                             </tr>
                             <tr>
-                            <td style={{color: `${props.mode === "dark" ? "white" : "black"}`}}>Reading Time</td>
+                            <td style={{color: `${props.mode !== "light" ? "white" : "black"}`}}>Reading Time</td>
                             <td className="detail"><span className="table-badge">{minutesRead()} minutes</span></td>
                             </tr>
                             <tr>
-                            <td style={{color: `${props.mode === "dark" ? "white" : "black"}`}}>Speaking Time</td>
+                            <td style={{color: `${props.mode !== "light" ? "white" : "black"}`}}>Speaking Time</td>
                             <td className="detail"><span className="table-badge">{speakingTime()} minutes</span></td>
                             </tr>
                         </tbody>
