@@ -27,12 +27,17 @@ export default function TextForm(props) {
     }
 
     const wordCount = () => {
-        const word = text.split(" ");
-        if (word[word.length - 1]) {
-            return word;
-        }
-        word.pop();
-        return word;
+        return text.split(" ").filter(item => {
+            if (item.length > 0) {
+                return item;
+            }
+            return false;
+        });
+        // if (word[word.length - 1]) {
+        //     return word;
+        // }
+        // word.pop();
+        // return word;
     }
 
     const sentenceCount = () => {
@@ -110,10 +115,10 @@ export default function TextForm(props) {
 
             </div>
             <div className="d-flex">
-                <button className={`btn btn-${props.mode} mx-1`} onClick={handleUpperClickEvent}>Convert To UpperCase</button>
-                <button className={`btn btn-${props.mode} mx-1`} onClick={handleLowerClickEvent}>Convert To LowerCase</button>
-                <button className={`btn btn-${props.mode} mx-1`} onClick={handleCopy}>Copy To Clipboard</button>
-                <button className={`btn btn-${props.mode} mx-1`} onClick={handleExtraSpace}>Remove Extra Space</button>
+                <button className={`btn btn-${props.mode !== "light" ? props.mode : "dark"} mx-1`} onClick={handleUpperClickEvent}>Convert To UpperCase</button>
+                <button className={`btn btn-${props.mode !== "light" ? props.mode : "dark"} mx-1`} onClick={handleLowerClickEvent}>Convert To LowerCase</button>
+                <button className={`btn btn-${props.mode !== "light" ? props.mode : "dark"} mx-1`} onClick={handleCopy}>Copy To Clipboard</button>
+                <button className={`btn btn-${props.mode !== "light" ? props.mode : "dark"} mx-1`} onClick={handleExtraSpace}>Remove Extra Space</button>
             </div>
             <div className="d-flex my-3 justify-content-between">
                 <div className="text-summary">
