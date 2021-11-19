@@ -18,3 +18,14 @@
 .text-details {
     flex-basis: 30%;
 }
+
+.main-area {
+    display: flex;
+    justify-content: space-between;
+}
+
+@media only screen and (max-device-width: 600px){
+    .main-area {
+        display: block;
+    }
+}

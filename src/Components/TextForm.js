@@ -41,12 +41,17 @@ export default function TextForm(props) {
     }
 
     const sentenceCount = () => {
-        const sentence = text.split(".");
-        if (sentence[sentence.length - 1]) {
-            return sentence;
-        }
-        sentence.pop();
-        return sentence;
+        return text.split(".").filter(item => {
+            if (item.length > 0) {
+                return item;
+            }
+            return false;
+        });
+        // if (sentence[sentence.length - 1]) {
+        //     return sentence;
+        // }
+        // sentence.pop();
+        // return sentence;
     }
 
     const paragraphCount = () => {
@@ -120,7 +125,7 @@ export default function TextForm(props) {
                 <button className={`btn btn-${props.mode !== "light" ? props.mode : "dark"} mx-1`} onClick={handleCopy}>Copy To Clipboard</button>
                 <button className={`btn btn-${props.mode !== "light" ? props.mode : "dark"} mx-1`} onClick={handleExtraSpace}>Remove Extra Space</button>
             </div>
-            <div className="d-flex my-3 justify-content-between">
+            <div className="main-area my-3">
                 <div className="text-summary">
                     <h2 className="">Your Word Summary</h2>
                     <p>{wordCount().length} words and {text.length} characters</p>
