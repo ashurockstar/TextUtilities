@@ -27,7 +27,7 @@ export default function TextForm(props) {
     }
 
     const wordCount = () => {
-        return text.split(" ").filter(item => {
+        return text.split(/\s+/).filter(item => {
             if (item.length > 0) {
                 return item;
             }
